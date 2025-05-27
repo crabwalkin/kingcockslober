@@ -40,19 +40,6 @@ rmdir /s /q "%APPDATA%\EasyAntiCheat" >nul 2>&1
 rmdir /s /q "%LOCALAPPDATA%\EasyAntiCheat" >nul 2>&1
 rmdir /s /q "%LOCALAPPDATA%\BattlEye" >nul 2>&1
 del /f /s /q "C:\Windows\System32\drivers\EasyAntiCheat.sys" >nul 2>&1
-echo [*] Nuking Prefetch...
-del /f /s /q "C:\Windows\Prefetch\*.pf" >nul 2>&1
-echo [*] Cleaning TEMP...
-del /f /s /q "%TEMP%\*" >nul 2>&1
-del /f /s /q "%WINDIR%\Temp\*" >nul 2>&1
-echo [*] Flushing Network...
-ipconfig /flushdns
-netsh winsock reset >nul
-netsh int ip reset >nul
-echo [*] Wiping Event Logs...
-for /F "tokens=*" %%G in ('wevtutil el') do (
-    wevtutil cl "%%G"
-)
 reg delete "HKLM\SOFTWARE\EasyAntiCheat" /f >nul 2>&1
 reg delete "HKCU\Software\EasyAntiCheat" /f >nul 2>&1
 reg delete "HKLM\SYSTEM\CurrentControlSet\Services\EAC" /f >nul 2>&1
